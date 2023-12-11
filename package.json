@@ -16,6 +16,5 @@
   "dependencies": {
     "@mermaid-js/mermaid-cli": "^10.6.1",
     "puppeteer": "^21.5.2"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }
