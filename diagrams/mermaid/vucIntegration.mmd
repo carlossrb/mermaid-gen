@@ -1,0 +1,31 @@
+sequenceDiagram
+    participant Client
+    participant Backend
+    participant Cache
+    participant VucApi
+
+    note over Client, VucApi: Authentication Flow
+
+    Client->>Backend: Request data from cfm-info
+    Backend->>Cache: Check accessToken
+    alt accessToken available
+        Cache-->>Backend: Return accessToken
+        Backend->>VucApi: Request cfm-info with accessToken
+        VucApi-->>Backend: cfm-info data
+        Backend-->>Client: cfm-info data
+    else accessToken not available, refreshToken available
+        Cache-->>Backend: Return refreshToken
+        Backend->>VucApi: Request new accessToken with refreshToken
+        VucApi-->>Backend: new accessToken
+        Backend->>Cache: Update accessToken
+        Backend->>VucApi: Request cfm-info with new accessToken
+        VucApi-->>Backend: cfm-info data
+        Backend-->>Client: cfm-info data
+    else accessToken and refreshToken not available
+        Backend->>VucApi: Login request
+        VucApi-->>Backend: new refreshToken and accessToken
+        Backend->>Cache: Store new tokens
+        Backend->>VucApi: Request cfm-info with new accessToken
+        VucApi-->>Backend: cfm-info data
+        Backend-->>Client: cfm-info data
+    end

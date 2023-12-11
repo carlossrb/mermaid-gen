@@ -1,0 +1,21 @@
+{
+  "name": "mermaid-gen",
+  "module": "true",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "diagrams:gen": "node mermaid.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "^10.6.1",
+    "puppeteer": "^21.5.2"
+  },
+  "packageManager": "yarn@4.0.2"
+}
