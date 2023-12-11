@@ -15,12 +15,12 @@ const platform = {
 
 const mermaidDiagramPath = path.resolve(__dirname, 'diagrams/mermaid')
 const mermaidDiagramImages = path.resolve(__dirname, 'diagrams/images')
-console.log(mermaidDiagramPath, mermaidDiagramImages)
+
 async function generateDiagrams() {
   try {
     console.log('Creating diagrams in progress...')
     const cmd = `npx @puppeteer/browsers install chromium --platform ${platform[arch]}`
-    console.log(cmd)
+
     const { stdout } = await execPromise(cmd)
     const [, chromiumPath] = stdout.split(' ')
 
